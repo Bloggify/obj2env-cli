@@ -19,8 +19,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Ionică Bizău <bizauionica@gmail.com> (https://ionicabizau.net)",
-  "homepage": "https://github.com/IonicaBizau/obj2env#readme",
+  "author": "Bloggify <support@bloggify.org> (https://bloggify.org)",
+  "homepage": "https://github.com/Bloggify/obj2env-cli#readme",
   "files": [
     "bin/",
     "app/",
@@ -35,10 +35,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/IonicaBizau/obj2env.git"
+    "url": "git+ssh://git@github.com/Bloggify/obj2env-cli.git"
   },
   "bugs": {
-    "url": "https://github.com/IonicaBizau/obj2env/issues"
+    "url": "https://github.com/Bloggify/obj2env-cli/issues"
   },
   "dependencies": {
     "bug-killer": "^4.4.4",
@@ -46,5 +46,8 @@
     "is-there": "^4.4.2",
     "obj2env": "^1.0.0",
     "tilda": "^4.4.10"
+  },
+  "blah": {
+    "ex_img": "http://i.imgur.com/yfKqx6W.gif"
   }
 }
