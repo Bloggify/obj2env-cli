@@ -61,6 +61,6 @@ Thanks! :sweat_smile:
 
 
 
-[1]: https://github.com/IonicaBizau/obj2env/issues
+[1]: https://github.com/Bloggify/obj2env-cli/issues
 
 [2]: https://github.com/IonicaBizau/code-style
