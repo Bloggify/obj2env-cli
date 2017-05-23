@@ -1,5 +1,8 @@
 {
-  "name": "obj2env",
+  "bin": {
+    "obj2env": "bin/obj2env.js"
+  },
+  "name": "obj2env-cli",
   "description": "Create .env files in your terminal.",
   "keywords": [
     "obj2env",
@@ -36,5 +39,12 @@
   },
   "bugs": {
     "url": "https://github.com/IonicaBizau/obj2env/issues"
+  },
+  "dependencies": {
+    "bug-killer": "^4.4.4",
+    "inquirer": "^3.0.6",
+    "is-there": "^4.4.2",
+    "obj2env": "^1.0.0",
+    "tilda": "^4.4.10"
   }
 }
