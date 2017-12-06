@@ -1,13 +1,17 @@
 #!/usr/bin/env node
 "use strict"
 
-import Tilda from "tilda"
-import obj2env from "obj2env"
-import inquirer from "inquirer"
-import Logger from "bug-killer"
-import isThere from "is-there"
+const Tilda = require("tilda")
+    , obj2env = require("obj2env")
+    , inquirer = require("inquirer")
+    , Logger = require("bug-killer")
+    , isThere = require("is-there")
 
 const DIR_OPTS = ["d", "dir"]
+const COMMENT_OPTS = ["c", "comment"]
+
+const IGNORE_OPTS = [...DIR_OPTS, ...COMMENT_OPTS]
+
 new Tilda(`${__dirname}/../package.json`, {
     options: [
         {
@@ -24,18 +28,23 @@ new Tilda(`${__dirname}/../package.json`, {
             opts: DIR_OPTS
           , desc: "Specify the directory where to write the .env file."
           , default: process.cwd()
+        },
+        {
+            opts: COMMENT_OPTS
+          , desc: "Add a help text for that variable."
+          , type: Array
         }
     ]
   , examples: [
         "obj2env PORT NODE_ENV"
-      , "obj2env -o PORT=8080 NODE_ENV"
+      , "obj2env -o -c 'The port the app will use.' -c 'The node environment' PORT=8080 NODE_ENV"
     ]
 }).main(action => {
     let isInteractive = false
+    let comments = action.options.comment.value
     const isOutput = action.options.output.value
 
     Promise.resolve().then(() => {
-        debugger
         if (!isOutput && !action.options.force.is_provided && isThere(`${action.options.dir.value}/.env`)) {
             return inquirer.prompt([{
                 type: "confirm"
@@ -51,7 +60,7 @@ new Tilda(`${__dirname}/../package.json`, {
             return
         }
         const variables = action.argv.map((c, index, arr) => {
-            if (c.startsWith("-") || DIR_OPTS.includes(arr[index - 1] && arr[index - 1].slice(1))) { return null }
+            if (c.startsWith("-") || IGNORE_OPTS.includes(arr[index - 1] && arr[index - 1].slice(1))) { return null }
             const splits = c.split("=")
 
             const name = splits[0]
@@ -63,12 +72,15 @@ new Tilda(`${__dirname}/../package.json`, {
                 name
               , value
             }
-        }).filter(Boolean)
+        }).filter(Boolean).map((c, i) => {
+            c.comment = comments[i]
+            return c
+        })
 
-        const questions = isInteractive ? variables.map(current => ({
+        const questions = isInteractive ? variables.map((current, index) => ({
             type: "input"
           , name: current.name
-          , message: `${current.name} =`
+          , message: `${current.name}${current.comment ? " (" + current.comment + ")" : ""} =`
           , default: current.value
         })) : []
 
@@ -79,7 +91,7 @@ new Tilda(`${__dirname}/../package.json`, {
                 }
             }
             if (isOutput) {
-                console.log(obj2env.envToArray(answers).join("\n"))
+                console.log(obj2env.toArray(answers).join("\n"))
             } else {
                 obj2env(answers, action.options.dir.value, err => {
                     if (err) { return Logger.log(err, "error") }
