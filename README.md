@@ -29,13 +29,14 @@ Usage: obj2env [options]
 Create .env files in your terminal.
 
 Options:
-  -o, --output   Output the content in the stdout.
-  -f, --force    Overrides the existing file without user
-                 confirmation.
-  -d, --dir      Specify the directory where to write the .env file.
-  -c, --comment  Add a help text for that variable.
-  -v, --version  Displays version information.
-  -h, --help     Displays this help.
+  -o, --output       Output the content in the stdout.
+  -f, --force        Overrides the existing file without user
+                     confirmation.
+  -i, --interactive  Enables the interactive mode.
+  -d, --dir          Specify the directory where to write the .env file.
+  -c, --comment      Add a help text for that variable.
+  -v, --version      Displays version information.
+  -h, --help         Displays this help.
 
 Examples:
   $ obj2env PORT NODE_ENV
