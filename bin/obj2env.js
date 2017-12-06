@@ -25,6 +25,12 @@ new Tilda(`${__dirname}/../package.json`, {
           , type: Boolean
         },
         {
+            opts: ["i", "interactive"]
+          , desc: "Enables the interactive mode."
+          , type: Boolean
+          , default: false
+        },
+        {
             opts: DIR_OPTS
           , desc: "Specify the directory where to write the .env file."
           , default: process.cwd()
@@ -40,7 +46,7 @@ new Tilda(`${__dirname}/../package.json`, {
       , "obj2env -o -c 'The port the app will use.' -c 'The node environment' PORT=8080 NODE_ENV"
     ]
 }).main(action => {
-    let isInteractive = false
+    let isInteractive = action.options.interactive.value
     let comments = action.options.comment.value
     const isOutput = action.options.output.value
 

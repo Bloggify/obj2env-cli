@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "bug-killer": "^4.4.4",
-    "inquirer": "^3.0.6",
+    "inquirer": "^4.0.1",
     "is-there": "^4.4.2",
     "obj2env": "^1.0.0",
     "tilda": "^4.4.10"
