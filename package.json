@@ -42,10 +42,10 @@
   },
   "dependencies": {
     "bug-killer": "^4.4.4",
-    "inquirer": "^4.0.1",
-    "is-there": "^4.4.2",
-    "obj2env": "^1.0.0",
-    "tilda": "^4.4.10"
+    "inquirer": "^7.3.3",
+    "is-there": "^4.5.1",
+    "obj2env": "^1.0.4",
+    "tilda": "^4.4.16"
   },
   "blah": {
     "ex_img": "http://i.imgur.com/yfKqx6W.gif"
